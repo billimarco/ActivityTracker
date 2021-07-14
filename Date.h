@@ -6,6 +6,8 @@
 #define ACTIVITYTRACKER_DATE_H
 
 
+#include <ostream>
+
 class Date {
 
 public:
@@ -28,6 +30,8 @@ public:
     int getYear() const;
 
     void setYear(int year);
+
+    std::string toString() const;
 
 private:
     int day{1};

@@ -61,3 +61,7 @@ int Date::getYear() const {
 void Date::setYear(int year) {
     Date::year = year;
 }
+
+std::string Date::toString() const {
+    return std::to_string(day) + "/" + std::to_string(month) + "/" + std::to_string(year);
+}
