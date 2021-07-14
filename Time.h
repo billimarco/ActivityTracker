@@ -22,6 +22,14 @@ public:
 
     void setMinutes(int minutes);
 
+    friend bool operator<(const Time &lhs, const Time &rhs);
+
+    friend bool operator>(const Time &lhs, const Time &rhs);
+
+    friend bool operator<=(const Time &lhs, const Time &rhs);
+
+    friend bool operator>=(const Time &lhs, const Time &rhs);
+
 private:
     int hour{0};
     int minutes{0};

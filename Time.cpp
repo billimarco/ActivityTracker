@@ -36,4 +36,24 @@ void Time::setMinutes(int minutes) {
     Time::minutes = minutes;
 }
 
+bool operator<(const Time &lhs, const Time &rhs) {
+    if (lhs.hour < rhs.hour)
+        return true;
+    if (rhs.hour < lhs.hour)
+        return false;
+    return lhs.minutes < rhs.minutes;
+}
+
+bool operator>(const Time &lhs, const Time &rhs) {
+    return rhs < lhs;
+}
+
+bool operator<=(const Time &lhs, const Time &rhs) {
+    return !(rhs < lhs);
+}
+
+bool operator>=(const Time &lhs, const Time &rhs) {
+    return !(lhs < rhs);
+}
+
 
