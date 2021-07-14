@@ -6,20 +6,22 @@
 
 bool Register::addActivity(Activity &act) {
     int newID = activityRegister.size();
-    activityRegister.insert(std::make_pair(newID, act));
-    if (activityRegister.size() > newID)
-        return true;
-    else
-        return false;
+    if (act.getStartTime() < act.getEndTime()) {
+        activityRegister.insert(std::make_pair(newID, act));
+        if (activityRegister.size() > newID)
+            return true;
+    }
+    return false;
 }
 
 bool Register::removeActivity(int idAct) {
     int precedentSize = activityRegister.size();
-    activityRegister.erase(activityRegister.find(idAct));
-    if (activityRegister.size() < precedentSize)
-        return true;
-    else
-        return false;
+    if (activityRegister.find(idAct) != activityRegister.end()) {
+        activityRegister.erase(activityRegister.find(idAct));
+        if (activityRegister.size() < precedentSize)
+            return true;
+    }
+    return false;
 }
 
 bool Register::modifyDescriptionActivity(int idAct, std::string newDescription) {

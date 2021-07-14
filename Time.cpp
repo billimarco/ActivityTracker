@@ -15,9 +15,8 @@ bool Time::verifyTime(int hour, int minutes) {
     if (hour >= 0 && hour <= 23) {
         if (minutes >= 0 && minutes <= 59)
             return true;
-        else
-            return false;
     }
+    return false;
 }
 
 int Time::getHour() const {

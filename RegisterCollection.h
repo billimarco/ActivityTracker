@@ -12,7 +12,7 @@
 
 class RegisterCollection {
 public:
-    RegisterCollection();
+    RegisterCollection() {};
 
     ~RegisterCollection() = default;
 

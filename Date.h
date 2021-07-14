@@ -6,7 +6,7 @@
 #define ACTIVITYTRACKER_DATE_H
 
 
-#include <ostream>
+#include <string>
 
 class Date {
 
