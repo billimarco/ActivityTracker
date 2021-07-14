@@ -37,3 +37,27 @@ bool Date::verifyExtremes(int first, int last, int var) {
     else
         return false;
 }
+
+int Date::getDay() const {
+    return day;
+}
+
+void Date::setDay(int day) {
+    Date::day = day;
+}
+
+int Date::getMonth() const {
+    return month;
+}
+
+void Date::setMonth(int month) {
+    Date::month = month;
+}
+
+int Date::getYear() const {
+    return year;
+}
+
+void Date::setYear(int year) {
+    Date::year = year;
+}

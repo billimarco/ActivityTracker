@@ -17,6 +17,18 @@ public:
 
     bool verifyExtremes(int first, int last, int var);
 
+    int getDay() const;
+
+    void setDay(int day);
+
+    int getMonth() const;
+
+    void setMonth(int month);
+
+    int getYear() const;
+
+    void setYear(int year);
+
 private:
     int day{1};
     int month{1};
