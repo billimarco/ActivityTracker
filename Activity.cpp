@@ -3,6 +3,9 @@
 //
 
 #include "Activity.h"
+Activity::Activity() {
+
+}
 
 Activity::Activity(std::string description, Time startTime, Time endTime) {
     this->description = description;
@@ -35,3 +38,5 @@ const Time &Activity::getEndTime() const {
 void Activity::setEndTime(const Time &endTime) {
     Activity::endTime = endTime;
 }
+
+

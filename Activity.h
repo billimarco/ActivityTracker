@@ -12,6 +12,8 @@
 
 class Activity {
 public:
+    Activity();
+
     Activity(std::string description, Time startTime, Time endTime);
 
     ~Activity() = default;
@@ -29,7 +31,7 @@ public:
     void setEndTime(const Time &endTime);
 
 private:
-    std::string description;
+    std::string description{""};
     Time startTime{Time(0, 0)};
     Time endTime{Time(0, 0)};
 };

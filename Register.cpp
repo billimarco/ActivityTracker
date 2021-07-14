@@ -3,3 +3,64 @@
 //
 
 #include "Register.h"
+
+bool Register::addActivity(Activity &act) {
+    int newID = activityRegister.size();
+    activityRegister.insert(std::make_pair(newID, act));
+    if (activityRegister.size() > newID)
+        return true;
+    else
+        return false;
+}
+
+bool Register::removeActivity(int idAct) {
+    int precedentSize = activityRegister.size();
+    activityRegister.erase(activityRegister.find(idAct));
+    if (activityRegister.size() < precedentSize)
+        return true;
+    else
+        return false;
+}
+
+bool Register::modifyDescriptionActivity(int idAct, std::string newDescription) {
+    if (activityRegister.find(idAct) != activityRegister.end()) {
+        activityRegister[idAct].setDescription(newDescription);
+    } else {
+        return false;
+    }
+}
+
+bool Register::modifyTimeActivity(int idAct, Time newStartTime, Time newEndTime) {
+    if (activityRegister.find(idAct) != activityRegister.end() && newStartTime < newEndTime) {
+        activityRegister[idAct].setStartTime(newStartTime);
+        activityRegister[idAct].setEndTime(newEndTime);
+    } else {
+        return false;
+    }
+}
+
+bool Register::modifyActivity(int idAct, std::string newDescription, Time newStartTime, Time newEndTime) {
+    if (activityRegister.find(idAct) != activityRegister.end() && newStartTime < newEndTime) {
+        activityRegister[idAct].setDescription(newDescription);
+        activityRegister[idAct].setStartTime(newStartTime);
+        activityRegister[idAct].setEndTime(newEndTime);
+    } else {
+        return false;
+    }
+}
+
+const Date &Register::getCurrentDate() const {
+    return currentDate;
+}
+
+void Register::setCurrentDate(const Date &currentDate) {
+    Register::currentDate = currentDate;
+}
+
+const std::map<int, Activity> &Register::getActivityRegister() const {
+    return activityRegister;
+}
+
+void Register::setActivityRegister(const std::map<int, Activity> &activityRegister) {
+    Register::activityRegister = activityRegister;
+}
