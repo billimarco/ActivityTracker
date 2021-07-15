@@ -30,43 +30,79 @@ ViewFrame::ViewFrame(wxWindow *parent, wxWindowID id, const wxString &title, con
 
     secondarySizer->Add(activityManagerLabel, 0, wxALL | wxEXPAND, 5);
 
-    descriptionLabel = new wxStaticText(this, wxID_ANY, wxT("Description:"), wxDefaultPosition, wxSize(-1, 28), 0);
+    wxGridSizer *activityIDSizer;
+    activityIDSizer = new wxGridSizer(0, 2, 0, 0);
+
+    wxBoxSizer *descriptionSizer;
+    descriptionSizer = new wxBoxSizer(wxVERTICAL);
+
+    descriptionLabel = new wxStaticText(this, wxID_ANY, wxT("Description:"), wxDefaultPosition, wxSize(-1, 28),
+                                        wxALIGN_CENTER_HORIZONTAL);
     descriptionLabel->Wrap(-1);
     descriptionLabel->SetFont(
             wxFont(16, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxEmptyString));
 
-    secondarySizer->Add(descriptionLabel, 0, wxALL | wxEXPAND, 5);
+    descriptionSizer->Add(descriptionLabel, 0, wxALL | wxEXPAND, 5);
 
-    descriptionText = new wxTextCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize(-1, 90), wxTE_MULTILINE);
-    descriptionText->SetMinSize(wxSize(-1, 90));
-    descriptionText->SetMaxSize(wxSize(-1, 90));
+    descriptionText = new wxTextCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize(-1, -1), wxTE_MULTILINE);
+    descriptionSizer->Add(descriptionText, 1, wxALL | wxEXPAND, 5);
 
-    secondarySizer->Add(descriptionText, 0, wxALL | wxEXPAND, 5);
 
-    wxGridSizer *activityIDSizer;
-    activityIDSizer = new wxGridSizer(0, 2, 0, 0);
+    activityIDSizer->Add(descriptionSizer, 1, wxEXPAND, 5);
 
-    activityIDLabel = new wxStaticText(this, wxID_ANY, wxT("ID Activity: "), wxDefaultPosition, wxSize(-1, 28), 0);
+    wxBoxSizer *idActivitySizer;
+    idActivitySizer = new wxBoxSizer(wxVERTICAL);
+
+    dateLabel = new wxStaticText(this, wxID_ANY, wxT("Date"), wxDefaultPosition, wxSize(-1, 28),
+                                 wxALIGN_CENTER_HORIZONTAL);
+    dateLabel->Wrap(-1);
+    dateLabel->SetFont(wxFont(16, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxEmptyString));
+
+    idActivitySizer->Add(dateLabel, 0, wxALL | wxEXPAND, 5);
+
+    datePicker = new wxDatePickerCtrl(this, wxID_ANY, wxDefaultDateTime, wxDefaultPosition, wxSize(-1, -1),
+                                      wxDP_DEFAULT | wxDP_SHOWCENTURY);
+    datePicker->SetFont(
+            wxFont(wxNORMAL_FONT->GetPointSize(), wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false,
+                   wxEmptyString));
+
+    idActivitySizer->Add(datePicker, 1, wxALL | wxALIGN_CENTER_HORIZONTAL, 5);
+
+    activityIDLabel = new wxStaticText(this, wxID_ANY, wxT("ID Activity: "), wxDefaultPosition, wxSize(-1, 28),
+                                       wxALIGN_CENTER_HORIZONTAL);
     activityIDLabel->Wrap(-1);
     activityIDLabel->SetFont(
             wxFont(16, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxEmptyString));
 
-    activityIDSizer->Add(activityIDLabel, 0, wxALL | wxEXPAND, 5);
+    idActivitySizer->Add(activityIDLabel, 0, wxALL | wxEXPAND, 5);
 
-    activityIDValue = new wxSpinCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS,
-                                     0, 99, 0);
-    activityIDSizer->Add(activityIDValue, 0, wxALL, 5);
+    activityIDValue = new wxSpinCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize,
+                                     wxALIGN_CENTER_HORIZONTAL | wxSP_ARROW_KEYS, 0, 99, 3);
+    activityIDValue->SetFont(
+            wxFont(wxNORMAL_FONT->GetPointSize(), wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false,
+                   wxEmptyString));
+
+    idActivitySizer->Add(activityIDValue, 1, wxALL | wxALIGN_CENTER_HORIZONTAL, 5);
+
+
+    activityIDSizer->Add(idActivitySizer, 1, wxEXPAND, 5);
 
 
     secondarySizer->Add(activityIDSizer, 0, wxEXPAND, 5);
 
+    wxGridSizer *timeSizer;
+    timeSizer = new wxGridSizer(0, 2, 0, 0);
+
+    wxBoxSizer *startTimeSizer;
+    startTimeSizer = new wxBoxSizer(wxVERTICAL);
+
     startTimeActivityLabel = new wxStaticText(this, wxID_ANY, wxT("Start Time Activity:"), wxDefaultPosition,
-                                              wxSize(-1, 28), 0);
+                                              wxSize(-1, 28), wxALIGN_CENTER_HORIZONTAL);
     startTimeActivityLabel->Wrap(-1);
     startTimeActivityLabel->SetFont(
             wxFont(16, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxEmptyString));
 
-    secondarySizer->Add(startTimeActivityLabel, 0, wxALL | wxEXPAND, 5);
+    startTimeSizer->Add(startTimeActivityLabel, 0, wxALL | wxEXPAND, 5);
 
     wxGridSizer *startTimeActivitySizer;
     startTimeActivitySizer = new wxGridSizer(0, 2, 0, 0);
@@ -91,20 +127,26 @@ ViewFrame::ViewFrame(wxWindow *parent, wxWindowID id, const wxString &title, con
 
     startTimeActivitySizer->Add(minutesStartLabel, 0, wxALL | wxALIGN_CENTER_VERTICAL | wxEXPAND, 5);
 
-    m_spinCtrl7 = new wxSpinCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0,
-                                 59, 0);
-    startTimeActivitySizer->Add(m_spinCtrl7, 0, wxALL | wxALIGN_CENTER_VERTICAL, 5);
+    minutesStartValue = new wxSpinCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS,
+                                       0, 59, 0);
+    startTimeActivitySizer->Add(minutesStartValue, 0, wxALL | wxALIGN_CENTER_VERTICAL, 5);
 
 
-    secondarySizer->Add(startTimeActivitySizer, 1, wxEXPAND, 5);
+    startTimeSizer->Add(startTimeActivitySizer, 1, wxEXPAND, 5);
+
+
+    timeSizer->Add(startTimeSizer, 1, wxEXPAND | wxALIGN_CENTER_VERTICAL, 5);
+
+    wxBoxSizer *endTImeSizer;
+    endTImeSizer = new wxBoxSizer(wxVERTICAL);
 
     endTimeActivityLabel = new wxStaticText(this, wxID_ANY, wxT("End Time Activity:"), wxDefaultPosition,
-                                            wxSize(-1, 28), 0);
+                                            wxSize(-1, 28), wxALIGN_CENTER_HORIZONTAL);
     endTimeActivityLabel->Wrap(-1);
     endTimeActivityLabel->SetFont(
             wxFont(16, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxEmptyString));
 
-    secondarySizer->Add(endTimeActivityLabel, 0, wxALL | wxEXPAND, 5);
+    endTImeSizer->Add(endTimeActivityLabel, 0, wxALL | wxEXPAND, 5);
 
     wxGridSizer *endTimeActivitySizer;
     endTimeActivitySizer = new wxGridSizer(0, 2, 0, 0);
@@ -134,16 +176,13 @@ ViewFrame::ViewFrame(wxWindow *parent, wxWindowID id, const wxString &title, con
     endTimeActivitySizer->Add(minutesEndValue, 0, wxALL | wxALIGN_CENTER_VERTICAL, 5);
 
 
-    secondarySizer->Add(endTimeActivitySizer, 1, wxEXPAND, 5);
+    endTImeSizer->Add(endTimeActivitySizer, 1, wxEXPAND, 5);
 
-    wxFlexGridSizer *dateSizer;
-    dateSizer = new wxFlexGridSizer(0, 2, 0, 0);
-    dateSizer->SetFlexibleDirection(wxBOTH);
-    dateSizer->SetNonFlexibleGrowMode(wxFLEX_GROWMODE_SPECIFIED);
 
-    dateCalendar = new wxCalendarCtrl(this, wxID_ANY, wxDefaultDateTime, wxDefaultPosition, wxSize(350, -1),
-                                      wxCAL_SHOW_HOLIDAYS);
-    dateSizer->Add(dateCalendar, 0, wxALL, 5);
+    timeSizer->Add(endTImeSizer, 1, wxEXPAND | wxALIGN_CENTER_VERTICAL, 5);
+
+
+    secondarySizer->Add(timeSizer, 0, wxEXPAND, 5);
 
     wxGridSizer *buttonsSizer;
     buttonsSizer = new wxGridSizer(0, 2, 0, 0);
@@ -168,13 +207,13 @@ ViewFrame::ViewFrame(wxWindow *parent, wxWindowID id, const wxString &title, con
     buttonsSizer->Add(modifyActivityButton, 0, wxALL | wxEXPAND, 5);
 
 
-    dateSizer->Add(buttonsSizer, 0, wxEXPAND, 5);
+    secondarySizer->Add(buttonsSizer, 0, wxEXPAND, 5);
 
+    listRegisterActivity = new wxTextCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize,
+                                          wxTE_MULTILINE | wxTE_READONLY);
+    listRegisterActivity->Enable(false);
 
-    secondarySizer->Add(dateSizer, 0, wxEXPAND, 5);
-
-    listRegisterActivities = new wxDataViewListCtrl(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0);
-    secondarySizer->Add(listRegisterActivities, 1, wxALL | wxEXPAND, 5);
+    secondarySizer->Add(listRegisterActivity, 1, wxALL | wxEXPAND, 5);
 
 
     mainSizer->Add(secondarySizer, 1, wxEXPAND, 5);
@@ -186,6 +225,7 @@ ViewFrame::ViewFrame(wxWindow *parent, wxWindowID id, const wxString &title, con
     this->Centre(wxBOTH);
 
     // Connect Events
+    datePicker->Connect(wxEVT_DATE_CHANGED, wxDateEventHandler(ViewFrame::datePickerOnDateChanged), NULL, this);
     addActivityButton->Connect(wxEVT_COMMAND_BUTTON_CLICKED,
                                wxCommandEventHandler(ViewFrame::addActivityButtonOnButtonClick), NULL, this);
     modifyActivityDescriptionButton->Connect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(
@@ -203,6 +243,7 @@ ViewFrame::ViewFrame(wxWindow *parent, wxWindowID id, const wxString &title, con
 
 ViewFrame::~ViewFrame() {
     // Disconnect Events
+    datePicker->Disconnect(wxEVT_DATE_CHANGED, wxDateEventHandler(ViewFrame::datePickerOnDateChanged), NULL, this);
     addActivityButton->Disconnect(wxEVT_COMMAND_BUTTON_CLICKED,
                                   wxCommandEventHandler(ViewFrame::addActivityButtonOnButtonClick), NULL, this);
     modifyActivityDescriptionButton->Disconnect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(

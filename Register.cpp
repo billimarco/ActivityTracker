@@ -27,6 +27,7 @@ bool Register::removeActivity(int idAct) {
 bool Register::modifyDescriptionActivity(int idAct, std::string newDescription) {
     if (activityRegister.find(idAct) != activityRegister.end()) {
         activityRegister[idAct].setDescription(newDescription);
+        return true;
     } else {
         return false;
     }
@@ -36,6 +37,7 @@ bool Register::modifyTimeActivity(int idAct, Time newStartTime, Time newEndTime)
     if (activityRegister.find(idAct) != activityRegister.end() && newStartTime < newEndTime) {
         activityRegister[idAct].setStartTime(newStartTime);
         activityRegister[idAct].setEndTime(newEndTime);
+        return true;
     } else {
         return false;
     }
@@ -46,6 +48,7 @@ bool Register::modifyActivity(int idAct, std::string newDescription, Time newSta
         activityRegister[idAct].setDescription(newDescription);
         activityRegister[idAct].setStartTime(newStartTime);
         activityRegister[idAct].setEndTime(newEndTime);
+        return true;
     } else {
         return false;
     }

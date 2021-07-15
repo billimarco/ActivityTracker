@@ -24,14 +24,14 @@
 #include <wx/colour.h>
 #include <wx/settings.h>
 #include <wx/textctrl.h>
-#include <wx/spinctrl.h>
 #include <wx/sizer.h>
-#include <wx/calctrl.h>
+#include <wx/datectrl.h>
+#include <wx/dateevt.h>
+#include <wx/spinctrl.h>
 #include <wx/bitmap.h>
 #include <wx/image.h>
 #include <wx/icon.h>
 #include <wx/button.h>
-#include <wx/dataview.h>
 #include <wx/frame.h>
 
 ///////////////////////////////////////////////////////////////////////////
@@ -47,28 +47,31 @@ protected:
     wxStaticText *activityManagerLabel;
     wxStaticText *descriptionLabel;
     wxTextCtrl *descriptionText;
+    wxStaticText *dateLabel;
+    wxDatePickerCtrl *datePicker;
     wxStaticText *activityIDLabel;
     wxSpinCtrl *activityIDValue;
     wxStaticText *startTimeActivityLabel;
     wxStaticText *hourStartLabel;
     wxSpinCtrl *hourStartValue;
     wxStaticText *minutesStartLabel;
-    wxSpinCtrl *m_spinCtrl7;
+    wxSpinCtrl *minutesStartValue;
     wxStaticText *endTimeActivityLabel;
     wxStaticText *hourEndLabel;
     wxSpinCtrl *hourEndValue;
     wxStaticText *minutesEndLabel;
     wxSpinCtrl *minutesEndValue;
-    wxCalendarCtrl *dateCalendar;
     wxButton *addActivityButton;
     wxButton *modifyActivityDescriptionButton;
     wxButton *removeActivityButton;
     wxButton *modifyTimeActivityButton;
     wxButton *viewRegisterButton;
     wxButton *modifyActivityButton;
-    wxDataViewListCtrl *listRegisterActivities;
+    wxTextCtrl *listRegisterActivity;
 
     // Virtual event handlers, overide them in your derived class
+    virtual void datePickerOnDateChanged(wxDateEvent &event) { event.Skip(); }
+
     virtual void addActivityButtonOnButtonClick(wxCommandEvent &event) { event.Skip(); }
 
     virtual void modifyActivityDescriptionButtonOnButtonClick(wxCommandEvent &event) { event.Skip(); }

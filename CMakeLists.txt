@@ -5,6 +5,6 @@ set(CMAKE_CXX_STANDARD 14)
 
 find_package(wxWidgets REQUIRED COMPONENTS net core base)
 include(${wxWidgets_USE_FILE})
-add_executable(ActivityTracker main.cpp Activity.cpp Activity.h Register.cpp Register.h Date.cpp Date.h Time.cpp Time.h RegisterCollection.cpp RegisterCollection.h Version.h ViewFrame.cpp ViewFrame.h)
+add_executable(ActivityTracker Activity.cpp Activity.h Register.cpp Register.h Date.cpp Date.h Time.cpp Time.h RegisterCollection.cpp RegisterCollection.h Version.h ViewFrame.cpp ViewFrame.h App.cpp App.h)
 
 target_link_libraries(ActivityTracker ${wxWidgets_LIBRARIES})
