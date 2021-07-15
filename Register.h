@@ -8,6 +8,7 @@
 
 #include <map>
 #include "Activity.h"
+#include "Date.h"
 
 class Register {
 public:

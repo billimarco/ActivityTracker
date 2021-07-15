@@ -18,7 +18,11 @@ public:
 
     void attachRegister(Register *reg);
 
-    void detachRegister(Date dateReg);
+    void detachRegister(std::string dateReg);
+
+    const std::map<std::string, Register *> &getCollection() const;
+
+    void setCollection(const std::map<std::string, Register *> &collection);
 
 private:
     std::map<std::string, Register *> collection;
