@@ -43,7 +43,8 @@ int Date::getDay() const {
 }
 
 void Date::setDay(int day) {
-    Date::day = day;
+    if (verifyDate(day, Date::month, Date::year))
+        Date::day = day;
 }
 
 int Date::getMonth() const {
@@ -51,7 +52,8 @@ int Date::getMonth() const {
 }
 
 void Date::setMonth(int month) {
-    Date::month = month;
+    if (verifyDate(Date::day, month, Date::year))
+        Date::month = month;
 }
 
 int Date::getYear() const {
@@ -59,7 +61,8 @@ int Date::getYear() const {
 }
 
 void Date::setYear(int year) {
-    Date::year = year;
+    if (verifyDate(Date::day, Date::month, year))
+        Date::year = year;
 }
 
 std::string Date::toString() const {

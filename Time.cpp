@@ -24,7 +24,8 @@ int Time::getHour() const {
 }
 
 void Time::setHour(int hour) {
-    Time::hour = hour;
+    if (verifyTime(hour, Time::minutes))
+        Time::hour = hour;
 }
 
 int Time::getMinutes() const {
@@ -32,7 +33,8 @@ int Time::getMinutes() const {
 }
 
 void Time::setMinutes(int minutes) {
-    Time::minutes = minutes;
+    if (verifyTime(Time::hour, minutes))
+        Time::minutes = minutes;
 }
 
 bool operator<(const Time &lhs, const Time &rhs) {
