@@ -6,7 +6,7 @@
 #define ACTIVITYTRACKER_REGISTER_H
 
 
-#include <map>
+#include <vector>
 #include "Activity.h"
 #include "Date.h"
 
@@ -16,27 +16,29 @@ public:
 
     ~Register() = default;
 
-    bool addActivity(Activity &act);
+    bool addActivity(std::string description, Time startTime, Time endTime);
 
-    bool removeActivity(int idAct);
+    bool removeActivity(int activityNumber);
 
-    bool modifyDescriptionActivity(int idAct, std::string newDescription);
+    bool modifyDescriptionActivity(int activityNumber, std::string newDescription);
 
-    bool modifyTimeActivity(int idAct, Time newStartTime, Time newEndTime);
+    bool modifyTimeActivity(int activityNumber, Time newStartTime, Time newEndTime);
 
-    bool modifyActivity(int idAct, std::string newDescription, Time newStartTime, Time newEndTime);
+    bool modifyActivity(int activityNumber, std::string newDescription, Time newStartTime, Time newEndTime);
+
+    void sortByTime();
 
     const Date &getCurrentDate() const;
 
     void setCurrentDate(const Date &currentDate);
 
-    const std::map<int, Activity> &getActivityRegister() const;
+    const std::vector<Activity> &getActivityRegister() const;
 
-    void setActivityRegister(const std::map<int, Activity> &activityRegister);
+    void setActivityRegister(const std::vector<Activity> &activityRegister);
 
 private:
     Date currentDate;
-    std::map<int, Activity> activityRegister;
+    std::vector<Activity> activityRegister;
 };
 
 

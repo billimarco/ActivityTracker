@@ -16,16 +16,16 @@ public:
 
     ~RegisterCollection() = default;
 
-    void attachRegister(Register *reg);
+    void attachRegister(std::shared_ptr<Register> &reg);
 
     void detachRegister(std::string dateReg);
 
-    const std::map<std::string, Register *> &getCollection() const;
+    const std::map<std::string, std::shared_ptr<Register>> &getCollection() const;
 
-    void setCollection(const std::map<std::string, Register *> &collection);
+    void setCollection(const std::map<std::string, std::shared_ptr<Register>> &collection);
 
 private:
-    std::map<std::string, Register *> collection;
+    std::map<std::string, std::shared_ptr<Register>> collection;
 };
 
 
