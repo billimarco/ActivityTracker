@@ -7,9 +7,8 @@
 
 TEST(Collection, VerifyAttachAndDetachRegister) {
     Date currentData(1, 1, 2010);
-    Register regA(currentData);
     RegisterCollection colA;
-    std::shared_ptr<Register> regPointer(&regA);
+    std::shared_ptr<Register> regPointer(new Register(currentData));
     colA.attachRegister(regPointer);
     ASSERT_FALSE(colA.getCollection().empty());
     colA.detachRegister(currentData.toString());
