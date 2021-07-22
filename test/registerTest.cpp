@@ -20,6 +20,7 @@ TEST(Register, VerifyAddActivity) {
     ASSERT_FALSE(regA.addActivity("Francesco", timeD, timeE));
     ASSERT_TRUE(regA.addActivity("Angiolo", timeC, timeD));
     ASSERT_FALSE(regA.addActivity("Giacomo", timeB, timeD));
+    std::cout << regA.toString() << std::endl;
 }
 
 TEST(Register, VerifyRemoveActivity) {
@@ -30,6 +31,7 @@ TEST(Register, VerifyRemoveActivity) {
     regA.addActivity("Marco", timeA, timeB);
     ASSERT_FALSE(regA.removeActivity(1));
     ASSERT_TRUE(regA.removeActivity(0));
+    std::cout << regA.toString() << std::endl;
 }
 
 TEST(Register, VerifyModifyActivity) {
@@ -42,4 +44,5 @@ TEST(Register, VerifyModifyActivity) {
     ASSERT_FALSE(regA.modifyActivity(1, "Giuseppe", timeA, timeB));
     ASSERT_FALSE(regA.modifyActivity(0, "Giuseppe", timeC, timeA));
     ASSERT_TRUE(regA.modifyActivity(0, "Giuseppe", timeB, timeC));
+    std::cout << regA.toString() << std::endl;
 }

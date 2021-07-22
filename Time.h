@@ -6,6 +6,8 @@
 #define ACTIVITYTRACKER_TIME_H
 
 
+#include <string>
+
 class Time {
 public:
     Time(int hour, int minutes);
@@ -29,6 +31,8 @@ public:
     friend bool operator<=(const Time &lhs, const Time &rhs);
 
     friend bool operator>=(const Time &lhs, const Time &rhs);
+
+    std::string toString() const;
 
 private:
     int hour{0};

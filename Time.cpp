@@ -57,4 +57,9 @@ bool operator>=(const Time &lhs, const Time &rhs) {
     return !(lhs < rhs);
 }
 
-
+std::string Time::toString() const {
+    if (minutes < 10)
+        return std::to_string(hour) + ":0" + std::to_string(minutes);
+    else
+        return std::to_string(hour) + ":" + std::to_string(minutes);
+}

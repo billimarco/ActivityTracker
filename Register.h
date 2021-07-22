@@ -12,19 +12,19 @@
 
 class Register {
 public:
-    Register(Date currentDate) : currentDate(currentDate) {};
+    explicit Register(Date &currentDate) : currentDate(currentDate) {};
 
     ~Register() = default;
 
-    bool addActivity(std::string description, Time startTime, Time endTime);
+    bool addActivity(std::string description, Time &startTime, Time &endTime);
 
     bool removeActivity(int activityNumber);
 
     bool modifyDescriptionActivity(int activityNumber, std::string newDescription);
 
-    bool modifyTimeActivity(int activityNumber, Time newStartTime, Time newEndTime);
+    bool modifyTimeActivity(int activityNumber, Time &newStartTime, Time &newEndTime);
 
-    bool modifyActivity(int activityNumber, std::string newDescription, Time newStartTime, Time newEndTime);
+    bool modifyActivity(int activityNumber, std::string newDescription, Time &newStartTime, Time &newEndTime);
 
     void sortByTime();
 
@@ -35,6 +35,8 @@ public:
     const std::vector<Activity> &getActivityRegister() const;
 
     void setActivityRegister(const std::vector<Activity> &activityRegister);
+
+    std::string toString() const;
 
 private:
     Date currentDate;

@@ -4,8 +4,8 @@
 
 #include "Register.h"
 
-bool Register::addActivity(std::string description, Time startTime, Time endTime) {
-    if (startTime > endTime) {
+bool Register::addActivity(std::string description, Time &startTime, Time &endTime) {
+    if (startTime >= endTime) {
         return false;
     }
     bool timeControl = true;
@@ -45,7 +45,7 @@ bool Register::modifyDescriptionActivity(int activityNumber, std::string newDesc
     }
 }
 
-bool Register::modifyTimeActivity(int activityNumber, Time newStartTime, Time newEndTime) {
+bool Register::modifyTimeActivity(int activityNumber, Time &newStartTime, Time &newEndTime) {
     if (activityNumber < activityRegister.size() && newStartTime < newEndTime) {
         activityRegister[activityNumber].setStartTime(newStartTime);
         activityRegister[activityNumber].setEndTime(newEndTime);
@@ -55,7 +55,7 @@ bool Register::modifyTimeActivity(int activityNumber, Time newStartTime, Time ne
     }
 }
 
-bool Register::modifyActivity(int activityNumber, std::string newDescription, Time newStartTime, Time newEndTime) {
+bool Register::modifyActivity(int activityNumber, std::string newDescription, Time &newStartTime, Time &newEndTime) {
     if (activityNumber < activityRegister.size() && newStartTime < newEndTime) {
         activityRegister[activityNumber].setDescription(newDescription);
         activityRegister[activityNumber].setStartTime(newStartTime);
@@ -82,7 +82,7 @@ void Register::sortByTime() {
         newRegister.push_back(activityRegister[selectedActivity]);
         removeActivity(selectedActivity);
     }
-    setActivityRegister(newRegister);
+    activityRegister = newRegister;
 }
 
 const Date &Register::getCurrentDate() const {
@@ -99,5 +99,21 @@ const std::vector<Activity> &Register::getActivityRegister() const {
 
 void Register::setActivityRegister(const std::vector<Activity> &activityRegister) {
     Register::activityRegister = activityRegister;
+    sortByTime();
+}
+
+std::string Register::toString() const {
+    std::string out = "Registro delle attivita' del " + currentDate.toString() + "\n";
+    out += "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n";
+    int i = 0;
+    for (Activity act:activityRegister) {
+        out += "Attivita' numero " + std::to_string(i) + "\n";
+        out += "Orario: " + act.getStartTime().toString() + " --------> " + act.getEndTime().toString() + "\n\n";
+        out += "Descrizione:\n";
+        out += act.getDescription() + "\n";
+        out += "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n";
+        i++;
+    }
+    return out;
 }
 

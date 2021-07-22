@@ -4,5 +4,5 @@
 
 #ifndef ACTIVITYTRACKER_VERSION_H
 #define ACTIVITYTRACKER_VERSION_H
-const std::string VERSION = "1.1";
+const std::string VERSION = "2.0";
 #endif //ACTIVITYTRACKER_VERSION_H

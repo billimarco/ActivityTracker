@@ -7,6 +7,7 @@
 
 
 #include <map>
+#include <memory>
 #include "Date.h"
 #include "Register.h"
 
