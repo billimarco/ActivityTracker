@@ -15,9 +15,9 @@ public:
 
     ~Date() = default;
 
-    bool verifyDate(int day, int month, int year);
+    bool verifyDate(int day, int month, int year) const;
 
-    bool verifyExtremes(int first, int last, int var);
+    bool verifyExtremes(int first, int last, int var) const;
 
     int getDay() const;
 

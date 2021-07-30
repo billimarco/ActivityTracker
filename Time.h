@@ -14,7 +14,7 @@ public:
 
     ~Time() = default;
 
-    bool verifyTime(int hour, int minutes);
+    bool verifyTime(int hour, int minutes) const;
 
     int getHour() const;
 
