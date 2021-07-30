@@ -12,7 +12,7 @@ Date::Date(int day, int month, int year) {
     }
 }
 
-bool Date::verifyDate(int day, int month, int year) {
+bool Date::verifyDate(int day, int month, int year) const {
     if (verifyExtremes(1, 12, month)) {
         if (month == 4 || month == 6 || month == 9 || month == 11) {
             return verifyExtremes(1, 30, day);
@@ -31,7 +31,7 @@ bool Date::verifyDate(int day, int month, int year) {
 
 }
 
-bool Date::verifyExtremes(int first, int last, int var) {
+bool Date::verifyExtremes(int first, int last, int var) const {
     if (var >= first && var <= last)
         return true;
     else
